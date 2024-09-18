@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PetStore
+﻿namespace PetStore
 {
-    internal class DogLeash : Product
+    public class DogLeash : Product
     {
+        public string? Material { get; set; }
         public int LengthInches { get; set; }
-
-        public string Material { get; set; }
-    }
+    } // Add the closing brace here for the DogLeash class.
 }

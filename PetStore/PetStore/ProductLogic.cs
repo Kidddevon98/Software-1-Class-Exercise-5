@@ -1,52 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PetStore
 {
-    internal class ProductLogic
+    public class ProductLogic : IProductLogic
     {
         private List<Product> _products;
-        private Dictionary<string, DogLeash> _dogLeash;
-        private Dictionary<string, CatFood> _catFood;
 
         public ProductLogic()
         {
-            _products = new List<Product>();
-            _dogLeash = new Dictionary<string, DogLeash>();
-            _catFood = new Dictionary<string, CatFood>();
+            _products = new List<Product>
+            {
+                new DogLeash { Name = "Leather Leash", Quantity = 5 },
+                new DogLeash { Name = "Nylon Leash", Quantity = 0 }, // Out of stock
+                new CatFood { Name = "Whiskas Cat Food", Quantity = 10 }
+            };
         }
 
         public void AddProduct(Product product)
         {
-            if (product is DogLeash)
-            {
-                _dogLeash.Add(product.Name, product as DogLeash);
-            }
-            if (product is CatFood)
-            {
-                _catFood.Add(product.Name, product as CatFood);
-            }
             _products.Add(product);
         }
 
-        public List<Product> GetAllProducts()
+        public List<Product> GetOnlyInStockProducts()
         {
-            return _products;
+            // Filtering products that are in stock (Quantity > 0)
+            return _products.Where(x => x.Quantity > 0).ToList();
         }
 
-        public DogLeash GetDogLeashByName(string name)
+        public DogLeash? GetDogLeashByName(string name)
         {
-            try
-            {
-                return _dogLeash[name];
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _products.OfType<DogLeash>().FirstOrDefault(dl => dl.Name == name);
         }
     }
 }

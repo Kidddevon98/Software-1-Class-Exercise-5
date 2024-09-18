@@ -1,11 +1,11 @@
 ﻿using PetStore;
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using System;
 
 var productLogic = new ProductLogic();
 
 Console.WriteLine("Press 1 to add a Dog Leash product");
 Console.WriteLine("Press 2 to view a Dog Leash Product");
+Console.WriteLine("Press 3 to view in-stock products");
 Console.WriteLine("Type 'exit' to quit");
 
 string userInput = Console.ReadLine();
@@ -39,17 +39,28 @@ while (userInput.ToLower() != "exit")
         productLogic.AddProduct(dogLeash);
         Console.WriteLine("Added a dog leash");
     }
-    if (userInput == "2")
+    else if (userInput == "2")
     {
         Console.Write("What is the name of the dog leash you would like to view? ");
         var dogLeashName = Console.ReadLine();
         var dogLeash = productLogic.GetDogLeashByName(dogLeashName);
-        Console.WriteLine(JsonSerializer.Serialize(dogLeash));
-        Console.WriteLine();
+        Console.WriteLine($"Dog Leash: {dogLeash?.Name}, Material: {dogLeash?.Material}, Quantity: {dogLeash?.Quantity}");
+    }
+    else if (userInput == "3")
+    {
+        // View in-stock products
+        var inStockProducts = productLogic.GetOnlyInStockProducts();
+        Console.WriteLine("In-stock products:");
+        foreach (var product in inStockProducts)
+        {
+            // Accessing product properties like Name and Quantity
+            Console.WriteLine($"Product: {product.Name}, Quantity: {product.Quantity}");
+        }
     }
 
     Console.WriteLine("Press 1 to add a product");
     Console.WriteLine("Press 2 to view a Dog Leash Product");
+    Console.WriteLine("Press 3 to view in-stock products");
     Console.WriteLine("Type 'exit' to quit");
     userInput = Console.ReadLine();
 }
