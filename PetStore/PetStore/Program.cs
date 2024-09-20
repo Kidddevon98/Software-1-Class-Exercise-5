@@ -6,7 +6,6 @@ var productLogic = new ProductLogic();
 
 Console.WriteLine("Press 1 to add a Dog Leash product");
 Console.WriteLine("Press 2 to view a Dog Leash Product");
-Console.WriteLine("Press 3 to get the total price of in-stock inventory");
 Console.WriteLine("Type 'exit' to quit");
 
 string? userInput = Console.ReadLine();
@@ -67,7 +66,7 @@ while (userInput?.ToLower() != "exit") // Check if userInput is null
         productLogic.AddProduct(dogLeash);
         Console.WriteLine("Added a dog leash");
     }
-    else if (userInput == "2")
+    if (userInput == "2")
     {
         Console.Write("What is the name of the dog leash you would like to view? ");
         var dogLeashName = Console.ReadLine();
@@ -83,15 +82,9 @@ while (userInput?.ToLower() != "exit") // Check if userInput is null
         }
         Console.WriteLine();
     }
-    else if (userInput == "3")
-    {
-        var totalPrice = productLogic.GetTotalPriceOfInventory();
-        Console.WriteLine($"Total price of in-stock inventory: {totalPrice:C}");
-    }
 
     Console.WriteLine("Press 1 to add a product");
     Console.WriteLine("Press 2 to view a Dog Leash Product");
-    Console.WriteLine("Press 3 to get the total price of in-stock inventory");
     Console.WriteLine("Type 'exit' to quit");
     userInput = Console.ReadLine();
 }

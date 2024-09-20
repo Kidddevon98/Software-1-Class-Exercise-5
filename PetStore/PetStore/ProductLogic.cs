@@ -64,10 +64,5 @@ namespace PetStore
         {
             return _products.Where(p => p.Quantity > 0).ToList();  // Filters in-stock products
         }
-
-        public decimal GetTotalPriceOfInventory()
-        {
-            return _products.InStock().Select(x => x.Price).Sum();
-        }
     }
 }
