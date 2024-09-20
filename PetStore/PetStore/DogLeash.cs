@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +8,8 @@ namespace PetStore
 {
     public class DogLeash : Product
     {
+        public string Material { get; set; } = string.Empty;
         public int LengthInches { get; set; }
-
-        public string? Material { get; set; }
+        public string Description { get; set; } = string.Empty;
     }
 }

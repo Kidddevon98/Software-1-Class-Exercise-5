@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace PetStore
 {
-    internal class DryCatFood : CatFood
+    public class DryCatFood : CatFood
     {
-        public double WeightPounds { get; set; }
-
+        public string Brand { get; set; } = string.Empty;
+        public new string Description { get; set; } = string.Empty;
     }
 }
